@@ -1,6 +1,7 @@
+from flask import Flask, request, Blueprint
 
 
-@app.route('/loan/<int:client_id>', methods=['GET'])
+@prediction.route('/loan/<int:client_id>', methods=['GET'])
 def get_loan_risky(client_id):
     try:
         if client_id in df['SK_ID_CURR'].tolist():
@@ -20,7 +21,7 @@ def get_loan_risky(client_id):
         return jsonify({"error": "An error occurred"}), 500
 
 
-@app.route('/loan/custom/<int:client_id>', methods=['GET'])
+@prediction.route('/loan/custom/<int:client_id>', methods=['GET'])
 def get_loan_risky_for_custom_client(client_id):
     try:
         if client_id in df['SK_ID_CURR'].tolist():
