@@ -1,6 +1,7 @@
+from flask import Flask, request, Blueprint
 
 
-@app.route('/loan/bivariate/', methods=['GET'])
+@analytics.route('/loan/bivariate/', methods=['GET'])
 def bivariate_analysis():
     try:
         feature1 = request.args.get('feature1')
@@ -31,7 +32,7 @@ def bivariate_analysis():
         return jsonify({"error": "An error occurred"}), 500
 
 
-@app.route('/loan/feature_importance/<int:client_id>', methods=['GET'])
+@analytics.route('/loan/feature_importance/<int:client_id>', methods=['GET'])
 def feature_importance(client_id):
     try:
         if client_id in df['SK_ID_CURR'].tolist():
@@ -62,7 +63,7 @@ def feature_importance(client_id):
         return jsonify({"error": "An error occurred"}), 500
 
 
-@app.route('/loan/distribution/<int:client_id>/<feature_name>', methods=['GET'])
+@analytics.route('/loan/distribution/<int:client_id>/<feature_name>', methods=['GET'])
 def feature_distribution(client_id, feature_name):
     try:
         if client_id in df['SK_ID_CURR'].tolist() and feature_name in df.columns:
