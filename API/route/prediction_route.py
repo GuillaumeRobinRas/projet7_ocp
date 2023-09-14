@@ -1,5 +1,7 @@
 from flask import Flask, request, Blueprint
-from handler import client_handler
+from Handler import client_handler
+
+prediction = Blueprint('prediction', __name__)
 
 
 @prediction.route('/loan/<int:client_id>', methods=['GET'])
