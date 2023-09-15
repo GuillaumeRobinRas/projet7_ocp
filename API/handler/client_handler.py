@@ -10,10 +10,7 @@ df = pd.read_csv(df_path)
 
 
 def is_a_client(client_id: int) -> bool:
-    if client_id in df['SK_ID_CURR'].tolist():
-        return True
-    else:
-        return False
+    return client_id in df['SK_ID_CURR'].tolist()
 
 
 def get_client(client_id: int) -> pd.DataFrame:

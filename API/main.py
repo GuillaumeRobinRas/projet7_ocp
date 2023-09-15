@@ -1,7 +1,7 @@
 from flask import Flask
 import pandas as pd
 
-from route import prediction_route
+from controller import prediction_route
 
 app = Flask(__name__)
 app.register_blueprint(prediction_route.prediction)
