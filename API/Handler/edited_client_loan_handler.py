@@ -4,8 +4,15 @@ from handler.abstract_client_handler import AbstractClientHandler
 
 class EditedClientLoanHandler(AbstractClientHandler):
 
-    def __init__(self, client_id: int):
+    def __init__(self, client_id: int, request):
         super().__init__(client_id)
+        self.request = request
+
+    def edit_client(self):
+        client_update = map_client_update(self.request)
+        for column, value in client_update.items():
+            client.loc[client.index[0], column] = value
+        return client
 
     def route(self):
         try:
