@@ -22,6 +22,7 @@ class AbstractClientHandler(ABC):
 
     def get_client(self) -> pd.DataFrame:
         client = self.df[self.df['SK_ID_CURR'] == int(self.client_id)]
+        print(client.shape)
         client = client.iloc[:, 1:750]  # ligne à check car c'est un hotfix bizarre
         return client
 
