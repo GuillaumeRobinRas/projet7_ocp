@@ -22,5 +22,5 @@ jobs :
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name : Run tests
-        run : cd API/tests/tests_handler|
+        run : |
           python -m unittest
