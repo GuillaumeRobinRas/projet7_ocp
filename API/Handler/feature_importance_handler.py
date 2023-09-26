@@ -42,7 +42,6 @@ class FeatureimportanceHandler(AbstractClientHandler):
         return client_importance_dict
 
     def route(self):
-
         if self.is_a_client():
             client_importance_dict = self.make_client_importance_dict(self.get_client_feature_importance_split())
             return jsonify(self.sort_client_feature_importance(client_importance_dict)), 200
