@@ -1,36 +1,36 @@
-from flask import jsonify
+from flask import jsonify, request
+import seaborn as sns
+import matplotlib.pyplot as plt
+import io
+
 
 from handler.abstract_client_handler import AbstractClientHandler
 
 
 class BivariateAnalysisHandler(AbstractClientHandler):
 
-    def __init__(self, client_id: int):
-        super().__init__(client_id)
+    def __init__(self):
+        super().__init__(int(request.args.get('client_id')))
+        self.feature1 = request.args.get('feature1')
+        self.feature2 = request.args.get('feature2')
+
+    def make_graph(self):
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(x=self.feature1, y=self.feature2, data=self.df)
+        plt.title(f'Analyse bivariée de {self.feature1} et {self.feature2}')
+        client_row = self.df[self.df['SK_ID_CURR'] == self.client_id]
+        sns.scatterplot(x=client_row[self.feature1], y=client_row[self.feature2], color='red', marker='o')
+        buffer = io.BytesIO()
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        return buffer
 
     def route(self):
         try:
-            feature1 = request.args.get('feature1')
-            feature2 = request.args.get('feature2')
-            client_id = int(request.args.get('client_id'))
-
-            if feature1 in df.columns and feature2 in df.columns:
-                plt.figure(figsize=(10, 6))
-                sns.boxplot(x=feature1, y=feature2, data=df)
-                plt.title(f'Analyse bivariée de {feature1} et {feature2}')
-
-                client_row = df[df['SK_ID_CURR'] == client_id]
-                sns.scatterplot(x=client_row[feature1], y=client_row[feature2], color='red', marker='o')
-
-                # Sauvegarder le graphique dans un buffer
-                buffer = io.BytesIO()
-                plt.savefig(buffer, format='png')
-                buffer.seek(0)
-
-                # Convertir le graphique en base64 pour le renvoyer dans la réponse
-                image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-
-                return jsonify({"image": image_base64})
+            if self.is_a_feature(self.feature1) and self.is_a_feature(self.feature2):
+                buffer = self.make_graph()
+                img = self.convert_to_base64(buffer)
+                return jsonify({"image": img})
             else:
                 return jsonify({"error": f"Feature '{feature1}' or '{feature2}' not found"}), 404
         except Exception as e:
