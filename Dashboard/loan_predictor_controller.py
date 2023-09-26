@@ -39,22 +39,43 @@ class LoanPredictorController:
 
     def isvalid(self):
         try:
-            customer_id, loan_amount, age, income, loan_duration_months, gender = self.customer_data
+            data_dict = self.data_mapper()
         except ValueError:
             return False
         if len(self.customer_data) > 1:
-            if int(customer_id) not in self.client_list:
+            if data_dict["customer_id"] not in self.client_list:
                 return False
-            if loan_amount < 0:
+            if data_dict["loan_amount"] < 0:
                 return False
-            if age < 0:
+            if data_dict["age"] < 0:
                 return False
-            if income < 0:
+            if data_dict["income"] < 0:
                 return False
-            if loan_duration_months < 0:
+            if data_dict["loan_duration_months"] < 0:
                 return False
         else:
             return False
         return True
 
+    def data_mapper(self):
+        print("valid")
+        mapper = {
+            "customer_id": float(self.customer_data[0]),
+            "loan_amount": float(self.customer_data[1]),
+            "age": int(self.customer_data[2]),
+            "income": float(self.customer_data[3]),
+            "loan_duration_months": int(self.customer_data[4]),
+            "gender": self.customer_data[5],
+            "feature1": self.customer_data[6],
+            "feature2": self.customer_data[7],
+            "distribution_feature": self.customer_data[8]
+        }
+        return mapper
 
+    def tiny_mapper(self):
+        return {
+            "customer_id": float(self.customer_data[0]),
+            "feature1": self.customer_data[1],
+            "feature2": self.customer_data[2],
+            "distribution_feature": self.customer_data[3]
+        }

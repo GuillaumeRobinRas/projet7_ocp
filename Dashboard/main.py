@@ -33,44 +33,36 @@ class LoanPredictorApp:
     def run(self):
 
         predictions = False
-        feature1 = ""
-        feature2 = ""
-        distribution_feature = ""
-        customer_id = 0
+        mapper = {"feature1": "",
+                  "feature2": "",
+                  "distribution_feature": "",
+                  "customer_id": 0}
         self.controller.set_client_list(self.list_of_client_id)
         self.ui.header()
         customer_data = self.ui.sidebar()
         self.controller.set_customer_data(customer_data)
         if self.controller.client_is_valid():
-            customer_id = int(customer_data[0])
-            feature1 = customer_data[1]
-            feature2 = customer_data[2]
-            distribution_feature = customer_data[3]
+            del mapper
+            mapper = self.controller.tiny_mapper()
             if self.controller.isvalid():
-                loan_amount = float(customer_data[1])
-                age = int(customer_data[2])
-                income = float(customer_data[3])
-                loan_duration_months = int(customer_data[4])
-                gender = customer_data[5]
-                feature1 = customer_data[6]
-                feature2 = customer_data[7]
-                distribution_feature = customer_data[8]
-                predictions = self.api_requester.loan_probabilities_custom_client(customer_id,
-                                                                                  loan_amount,
-                                                                                  age,
-                                                                                  income,
-                                                                                  loan_duration_months,
-                                                                                  gender)
+                del mapper
+                mapper = self.controller.data_mapper()
+                predictions = self.api_requester.loan_probabilities_custom_client(mapper['customer_id'],
+                                                                                  mapper["loan_amount"],
+                                                                                  mapper["age"],
+                                                                                  mapper["income"],
+                                                                                  mapper["loan_duration_months"],
+                                                                                  mapper["gender"])
 
             else:
-                predictions = self.api_requester.loan_probabilities_call(customer_id)
+                predictions = self.api_requester.loan_probabilities_call(mapper["customer_id"])
 
         if predictions:
             self.ui.display_client_risk_and_probabilities(risk=self.controller.is_risky(predictions["prediction"]),
                                                           probabilities=predictions["probabilities"])
-            self.ui.display_top_client_features(self.api_requester.client_features_importance_call(customer_id))
-            self.ui.display_feature_distribution(distribution_feature, self.api_requester.feature_distribution(customer_id, distribution_feature))
-            bivariate_data = self.api_requester.bivariate_analysis(customer_id, feature1, feature2)
+            self.ui.display_top_client_features(self.api_requester.client_features_importance_call(mapper["customer_id"]))
+            self.ui.display_feature_distribution(mapper["distribution_feature"], self.api_requester.feature_distribution(mapper["customer_id"], mapper["distribution_feature"]))
+            bivariate_data = self.api_requester.bivariate_analysis(mapper["customer_id"], mapper["feature1"], mapper["feature2"])
             if bivariate_data and "image" in bivariate_data:
                 self.ui.display_bivariate_analysis(bivariate_data["image"])
         else:
