@@ -4,7 +4,6 @@ import pandas as pd
 
 from env import lgb_model_path, df_path
 from utils.utils import load_model
-from utils.utils import load_model
 
 
 class AbstractClientHandler(ABC):

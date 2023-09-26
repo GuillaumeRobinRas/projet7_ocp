@@ -15,7 +15,6 @@ class ClientLoanHandler(AbstractClientHandler):
                     'prediction': self.get_prediction(client),
                     'probabilities': self.get_probabilities(client)
                 }
-                print(jsonify(return_dict))
                 return jsonify(return_dict), 200
             else:
                 return jsonify({"error": "Client forbidden"}), 403
