@@ -5,7 +5,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import io
-import base64
 import numpy as np
 from PIL import Image
 
@@ -29,17 +28,9 @@ class FeatureDistributionHandler(AbstractClientHandler):
         buffer.seek(0)
         return buffer
 
-    def is_a_feature(self):
-        return self.feature in self.df.columns
-
-    @staticmethod
-    def convert_to_base64(buffer):
-        image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-        return image_base64
-
     def route(self):
         try:
-            if self.is_a_client() and self.is_a_feature():
+            if self.is_a_client() and self.is_a_feature(self.feature):
                 buffer = self.make_graph(self.get_client()[self.feature].values[0])
                 img = self.convert_to_base64(buffer)
                 return jsonify({"image": img})

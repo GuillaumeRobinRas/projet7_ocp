@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import pandas as pd
-
+import base64
 
 from env import lgb_model_path, df_path
 from utils.utils import load_model
@@ -31,3 +31,11 @@ class AbstractClientHandler(ABC):
     def get_probabilities(self, client: pd.DataFrame) -> list:
         probabilities = self.model_lgb.predict_proba(client)
         return probabilities.tolist()
+
+    @staticmethod
+    def convert_to_base64(buffer):
+        image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+        return image_base64
+
+    def is_a_feature(self, feature):
+        return feature in self.df.columns

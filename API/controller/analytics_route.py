@@ -6,8 +6,7 @@ analytics = Blueprint('analytics', __name__)
 
 @analytics.route('/loan/bivariate/', methods=['GET'])
 def bivariate_analysis():
-    requests = request.args.get('client_id')
-    return feature_importance_handler.FeatureimportanceHandler(client_id).route()
+    return bivariate_analysis_handler.BivariateAnalysisHandler().route()
 
 
 @analytics.route('/loan/feature_importance/<int:client_id>', methods=['GET'])
