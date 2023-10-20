@@ -5,20 +5,19 @@ from handler.abstract_client_handler import AbstractClientHandler
 class EditedClientLoanHandler(AbstractClientHandler):
 
     def __init__(self, client_id: int):
-        super().__init__(client_id)
+        super(client_id)
         self.request = request.args.to_dict()
         self.request_dict = self.dict_mapper()
 
     @property
     def dict_match(self):
-        dict_keys = {
+        return {
             'AMT_CREDIT': 'loan_amount',
             'DAYS_BIRTH': 'age',
             'AMT_INCOME_TOTAL': 'income',
             'AMT_ANNUITY': 'loan_duration_months',
             'CODE_GENDER': 'gender'
         }
-        return dict_keys
 
     def dict_mapper(self):
         result_dict = {}
