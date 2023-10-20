@@ -11,7 +11,8 @@ class APIRequester:
 
     @staticmethod
     def loan_probabilities_call(identity: int) -> dict:
-        url = API_URL + "loan/" + str(identity)
+        url = API_URL + "loan/" + str(int(identity))
+        print(url)
         try:
             response = requests.get(url)
             response.raise_for_status()
@@ -21,13 +22,13 @@ class APIRequester:
             print(f"Une erreur s'est produite lors de l'appel API : {e}")
 
     def loan_probabilities_custom_client(self, client_id, loan_amount, age, income, loan_duration_months, gender) -> dict:
-        url = self.api_url + "loan/custom/" + str(client_id)
+        url = self.api_url + "loan/custom/" + str(int(client_id))
         params = {
             'loan_amount': loan_amount,
             'age': age,
             'income': income,
             'loan_duration_months': loan_duration_months,
-            'gender': gender
+            'CODE_GENDER': gender
         }
         try:
             response = requests.get(url, params=params)
@@ -42,7 +43,7 @@ class APIRequester:
     def bivariate_analysis(self, customer_id, feature1, feature2) -> dict:
         url = self.api_url + "loan/bivariate"
         params = {
-            'client_id': customer_id,
+            'client_id': int(customer_id),
             'feature1': feature1,
             'feature2': feature2
         }
@@ -55,7 +56,7 @@ class APIRequester:
             print(f"Une erreur s'est produite lors de l'appel API : {e}")
 
     def client_features_importance_call(self,identity: int) -> list:
-        url = self.api_url + "loan/feature_importance/" + str(identity)
+        url = self.api_url + "loan/feature_importance/" + str(int(identity))
         try:
             response = requests.get(url)
             response.raise_for_status()
@@ -66,10 +67,9 @@ class APIRequester:
 
     def feature_distribution(self, client_id: int, feature_name: str) -> Image:
         try:
-            url = f"{self.api_url}loan/distribution/{client_id}/{feature_name}"
+            url = f"{self.api_url}loan/distribution/{int(client_id)}/{feature_name}"
             response = requests.get(url)
             response_data = response.json()
-
             if "image" in response_data:
                 image_base64 = response_data["image"]
                 image_bytes = base64.b64decode(image_base64)

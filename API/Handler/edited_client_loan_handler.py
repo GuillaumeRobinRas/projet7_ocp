@@ -1,25 +1,40 @@
-from flask import jsonify
+from flask import jsonify, request
 from handler.abstract_client_handler import AbstractClientHandler
 
 
 class EditedClientLoanHandler(AbstractClientHandler):
 
-    def __init__(self, client_id: int, request):
-        super().__init__(client_id)
-        self.request = request
+    def __init__(self, client_id: int):
+        super(client_id)
+        self.request = request.args.to_dict()
+        self.request_dict = self.dict_mapper()
+
+    @property
+    def dict_match(self):
+        return {
+            'AMT_CREDIT': 'loan_amount',
+            'DAYS_BIRTH': 'age',
+            'AMT_INCOME_TOTAL': 'income',
+            'AMT_ANNUITY': 'loan_duration_months',
+            'CODE_GENDER': 'gender'
+        }
+
+    def dict_mapper(self):
+        result_dict = {}
+        for key1, key2 in self.dict_match.items():
+            if key2 in self.request:
+                result_dict[key1] = self.request[key2]
+        return result_dict
 
     def edit_client(self, client):
-        print("edit client")
-        client_update = map_client_update(self.request)
-        for column, value in client_update.items():
-            client.loc[client.index[0], column] = value
+        for column, value in self.request_dict.items():
+            client[[column]] = float(value)
         return client
 
     def route(self):
         try:
             if self.is_a_client():
-                client = self.get_client()
-                client = edit_client(client)
+                client = self.edit_client(self.get_client())
                 return_dict = {
                     'prediction': self.get_prediction(client),
                     'probabilities': self.get_probabilities(client)
