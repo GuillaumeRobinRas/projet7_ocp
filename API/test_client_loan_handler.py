@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import patch, Mock
 from flask import jsonify, Flask
 import json
-from .handler.abstract_client_handler import AbstractClientHandler
-from .handler.client_loan_handler import ClientLoanHandler
+from .Handler.abstract_client_handler import AbstractClientHandler
+from .Handler.client_loan_handler import ClientLoanHandler
 
 
 class TestClientLoanHandler(unittest.TestCase):

@@ -38,7 +38,7 @@ def custom_metric(y_true, y_pred):
 
 
 def preprocess_data():
-    df = pd.read_csv("../../handler/dataset.csv")
+    df = pd.read_csv("../../Handler/dataset.csv")
     X_train, Y_train, X_valid, Y_valid, oof_preds, sub_preds, feature_importance_df = split_ds(df)
     imp_mean = SimpleImputer(strategy='mean')
     imp_mean.fit(X_train)
