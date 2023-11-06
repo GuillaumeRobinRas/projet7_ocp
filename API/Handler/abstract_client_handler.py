@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 import pandas as pd
 import base64
 
-from env import lgb_model_path, df_path
-from utils.utils import load_model
+from ..env import lgb_model_path, df_path
+from ..utils.utils import load_model
 
 
 class AbstractClientHandler(ABC):
@@ -21,7 +21,7 @@ class AbstractClientHandler(ABC):
 
     def get_client(self) -> pd.DataFrame:
         client = self.df[self.df['SK_ID_CURR'] == int(self.client_id)]
-        client = client.iloc[:, 1:750]  # ligne à check car c'est un hotfix bizarre
+        client = client.iloc[:, 1:750]
         return client
 
     def get_prediction(self, client: pd.DataFrame) -> list:

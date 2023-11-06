@@ -2,10 +2,8 @@ import unittest
 from unittest.mock import patch, Mock
 from flask import jsonify, Flask
 import json
-import sys
-sys.path.append("../..")
-
-from handler.client_loan_handler import ClientLoanHandler
+from .handler.abstract_client_handler import AbstractClientHandler
+from .handler.client_loan_handler import ClientLoanHandler
 
 
 class TestClientLoanHandler(unittest.TestCase):

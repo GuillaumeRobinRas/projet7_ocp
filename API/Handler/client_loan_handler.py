@@ -1,5 +1,5 @@
 from flask import jsonify
-from handler.abstract_client_handler import AbstractClientHandler
+from ..handler.abstract_client_handler import AbstractClientHandler
 
 
 class ClientLoanHandler(AbstractClientHandler):
