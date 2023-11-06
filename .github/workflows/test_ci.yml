@@ -23,4 +23,4 @@ jobs :
           pip install -r requirements.txt
       - name : Run tests
         run : |
-          python -m unittest API\tests\tests_handler\test_client_loan_handler.py
+          python -m unittest API\test_client_loan_handler.py
