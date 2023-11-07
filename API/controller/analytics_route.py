@@ -1,5 +1,5 @@
 from flask import Flask, request, Blueprint
-from handler import feature_importance_handler, bivariate_analysis_handler, feature_distribution_handler
+from ..Handler import feature_importance_handler, bivariate_analysis_handler, feature_distribution_handler
 
 analytics = Blueprint('analytics', __name__)
 

@@ -1,5 +1,5 @@
 from flask import Flask, request, Blueprint
-from handler import client_loan_handler, edited_client_loan_handler
+from ..Handler import client_loan_handler, edited_client_loan_handler
 
 prediction = Blueprint('prediction', __name__)
 
