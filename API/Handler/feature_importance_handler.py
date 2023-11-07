@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from handler.abstract_client_handler import AbstractClientHandler
+from ..Handler.abstract_client_handler import AbstractClientHandler
 
 
 class FeatureimportanceHandler(AbstractClientHandler):

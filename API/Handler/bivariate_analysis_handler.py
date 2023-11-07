@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import io
 
 
-from handler.abstract_client_handler import AbstractClientHandler
+from ..Handler.abstract_client_handler import AbstractClientHandler
 
 
 class BivariateAnalysisHandler(AbstractClientHandler):

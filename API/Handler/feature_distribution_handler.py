@@ -8,7 +8,7 @@ import io
 import numpy as np
 from PIL import Image
 
-from handler.abstract_client_handler import AbstractClientHandler
+from ..Handler.abstract_client_handler import AbstractClientHandler
 
 
 class FeatureDistributionHandler(AbstractClientHandler):
