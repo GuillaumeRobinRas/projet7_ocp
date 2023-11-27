@@ -1,2 +1,2 @@
-lgb_model_path = '/home/guillaumerobin100/projet7_ocp/model/lgb_classifier.pkl'
-df_path = '/home/guillaumerobin100/projet7_ocp/dataset.csv'
+lgb_model_path = '/home/guillaumerobin100/projet7_ocp/model/lgb_classifier.pkl' # local Path: projet7_ocp\API\env.py
+df_path = '/home/guillaumerobin100/projet7_ocp/dataset.csv' # local Path: projet7_ocp\API\env.py
