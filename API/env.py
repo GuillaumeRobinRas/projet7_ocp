@@ -1,2 +1,2 @@
 lgb_model_path = 'model/lgb_classifier.pkl'
-df_path = 'dataset/dataset.csv'
+df_path = '/home/guillaumerobin100/projet7_ocp/dataset/dataset.csv'
