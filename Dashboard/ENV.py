@@ -1,5 +1,5 @@
 DF_PATH = r"C:\Users\guillaume.robin\OneDrive - RAS-INTERIM\Documents\Formation\Project\P7\dataset.csv"
 LOGO_PATH = r"C:\Users\guillaume.robin\OneDrive - RAS-INTERIM\Documents\Formation\Project\P7\src\logo.png"
 INITIAL_SENTENCE = "Veuillez saisir l\'identifiant d\'un client:"
-API_URL = "http://127.0.0.1:5000/"
+API_URL = "http://guillaumerobin100.pythonanywhere.com/"
 WAITING_SENTENCE = "Prédiction en cours..."
