@@ -1,5 +1,5 @@
-DF_PATH = r"dataset.csv"
-LOGO_PATH = r"logo.png"
+DF_PATH = "dataset.csv"
+LOGO_PATH = "logo.png"
 INITIAL_SENTENCE = "Veuillez saisir l\'identifiant d\'un client:"
 API_URL = "http://guillaumerobin100.pythonanywhere.com/"
 WAITING_SENTENCE = "Prédiction en cours..."
