@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 import pandas as pd
 import base64
 
-from ..env import lgb_model_path, df_path
-from ..utils.utils import load_model
+from env import lgb_model_path, df_path
+from utils import load_model
 
 
 class AbstractClientHandler(ABC):
