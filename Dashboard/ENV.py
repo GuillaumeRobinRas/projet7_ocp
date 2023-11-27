@@ -1,5 +1,5 @@
-DF_PATH = "dataset.csv"
-LOGO_PATH = "https://github.com/GuillaumeRobinRas/projet7_ocp/blob/main/Dashboard/logo.png"
+DF_PATH = "Dashboard/dataset.csv"
+LOGO_PATH = "logo.png"
 INITIAL_SENTENCE = "Veuillez saisir l\'identifiant d\'un client:"
 API_URL = "http://guillaumerobin100.pythonanywhere.com/"
 WAITING_SENTENCE = "Prédiction en cours..."
