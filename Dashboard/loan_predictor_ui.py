@@ -15,11 +15,11 @@ class LoanPredictorUI:
 
     @staticmethod
     def header() -> None:
-        url_icon = LOGO_PATH
-        response = requests.get(url_icon)
-        img = Image.open(BytesIO(response.content))
-        logo = LoanPredictorUI.image(img)
-        st.image(logo, use_column_width=True)
+        # url_icon = LOGO_PATH
+        # response = requests.get(url_icon)
+        # img = Image.open(BytesIO(response.content))
+        # logo = LoanPredictorUI.image(img)
+        # st.image(logo, use_column_width=True)
         st.title('Estimation de risque de défaut de paiement de prêt immobilier')
 
     def sidebar(self) -> list:
