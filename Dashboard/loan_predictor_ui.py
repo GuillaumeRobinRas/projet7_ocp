@@ -14,7 +14,7 @@ class LoanPredictorUI:
 
     @staticmethod
     def header() -> None:
-        logo = LoanPredictorUI.image(LOGO_PATH)
+        logo = LoanPredictorUI.read_image(LOGO_PATH)
         st.image(logo, use_column_width=True)
         st.title('Estimation de risque de défaut de paiement de prêt immobilier')
 
