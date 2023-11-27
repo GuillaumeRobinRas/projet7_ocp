@@ -1,4 +1,4 @@
-DF_PATH = "https://github.com/GuillaumeRobinRas/projet7_ocp/blob/main/Dashboard/dataset.csv"
+DF_PATH = "dataset.csv"
 LOGO_PATH = "https://github.com/GuillaumeRobinRas/projet7_ocp/blob/main/Dashboard/logo.png"
 INITIAL_SENTENCE = "Veuillez saisir l\'identifiant d\'un client:"
 API_URL = "http://guillaumerobin100.pythonanywhere.com/"
