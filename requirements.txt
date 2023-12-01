@@ -4,5 +4,4 @@ plotly
 st-annotated-text
 matplotlib
 seaborn
-io
-base64
+
