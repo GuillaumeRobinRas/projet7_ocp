@@ -1,7 +1,6 @@
 ﻿streamlit
 pandas
 plotly
-st-annotated-text
 matplotlib
 seaborn
-
+PIL==10.1.0
